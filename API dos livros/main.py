@@ -1,11 +1,21 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, Request, Response
 
 app = Flask(__name__)
 
 livros = [
     {
         'id': 1,
-        'título': 'Harry Potter'
+        'título': 'Harry Potter',
+        'personagens': [
+            {
+                'id':1,
+                'nome': 'Harry Potter'
+            },
+            {
+                'id': 2,
+                'nome':'Hermione'
+            }
+        ]
     },
     {
         'id': 2,
@@ -32,7 +42,7 @@ def obter_livros_por_id(id):
 #Altera um livro existente por id
 @app.route('/livros/<int:id>',methods=['PUT'])
 def editar_livros_por_id(id):
-    livro_alterado = request.get_json()
+    livro_alterado = Request.get_json()
     for indice,livro in enumerate(livros):
         if livro.get('id') == id:
             livros[indice].update(livro_alterado)
@@ -41,7 +51,7 @@ def editar_livros_por_id(id):
 #Cria um livro
 @app.route('/livros',methods=['POST'])
 def criar_livro():
-    novo_livro = request.get_json()
+    novo_livro = Request.get_json()
     livros.append(novo_livro)
     return jsonify(livros)
 
