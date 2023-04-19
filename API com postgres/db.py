@@ -36,8 +36,5 @@ def consultar_db(sql):
   cur = con.cursor()
   cur.execute(sql)
   recset = cur.fetchall()
-  registros = []
-  for rec in recset:
-    registros.append(rec)
   con.close()
-  return registros
+  return recset
