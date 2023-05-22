@@ -1,3 +1,3 @@
 # Projetos-gerais-com-Python
 
-## Aqui tem processos gerais com python.
+## Aqui tem projetos gerais com python.
